@@ -1096,11 +1096,20 @@ summarize.design.parameters.and.performance.TwoTreatmentArms <- function(optimiz
   power.summary <- cbind(optimized.design$optima$empirical.power,optimized.design$optima$conj.power)
   power.summary <- data.frame(Scenario = 1:nrow(power.summary),
                               power.summary)
-  colnames(power.summary) <- c("Scenario","Power.H01","Power.H02","Prob.Reject.All.False.Null.Hypotheses")
+  colnames(power.summary) <-
+    c("Scenario",
+      "Power.H011","Power.H012",
+      "Power.H021","Power.H022",
+      "Prob.Reject.All.False.Null.Hypotheses")
+
   type.1.error.summary <- optimized.design$optima$type.1.error
   type.1.error.summary <- data.frame(Scenario = 1:nrow(type.1.error.summary),
                                      type.1.error.summary,optimized.design$optima$fwer)
-  colnames(type.1.error.summary) <- c("Scenario","Type.I.Error.H01","Type.I.Error.H02","Familywise.Type.I.Error")
+  colnames(type.1.error.summary) <-
+    c("Scenario",
+      "Type.I.Error.H011","Type.I.Error.H012",
+      "Type.I.Error.H021","Type.I.Error.H022",
+      "Familywise.Type.I.Error")
 
   expected.sample.size <- optimized.design$optima$expected.sample.size.per.scenario
   expected.sample.size <- c(expected.sample.size,sum(optimized.design$evaluate.object.parameters$scenario.weights*expected.sample.size))
